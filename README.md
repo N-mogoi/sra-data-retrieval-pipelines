@@ -73,11 +73,14 @@ Clone the repository:
 git clone https://github.com/N-mogoi/biological_databases_ontology.git
 cd biological_databases_ontology
 
+```
 
 Switch to a branch of interest:
 
 ```bash
 git checkout r-single-accession
+
+```
 
 
 Author
