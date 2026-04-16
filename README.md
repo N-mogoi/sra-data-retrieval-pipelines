@@ -1,5 +1,3 @@
-#GenBank Data Retrieval Workflow in R
-
 This project demonstrates a reproducible bioinformatics workflow for retrieving and structuring biological data from NCBI using **R**.
 
 ---
