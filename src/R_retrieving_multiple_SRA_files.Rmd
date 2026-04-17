@@ -1,0 +1,126 @@
+---
+title: "multiple_SRA_files_download"
+author: "Nick Mogoi"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# 1. Introduction
+This script is designed to retrieve multiple sequencing datasets from the NCBI Sequence Read Archive (SRA) using R. The workflow reads accession IDs from a text file and downloads paired-end FASTQ files using the SRA Toolkit.
+
+# 2. Setup
+
+## 2.1 Set working directory
+
+```{r}
+
+getwd()
+
+#ensure the directory has the .txt accession file
+list.files()
+
+```
+
+
+## 2.2 Load required libraries
+
+```{r}
+
+library(readr)
+library(stringr)
+
+```
+
+
+## 2.3 Read the accessions from the .txt file
+
+```{r}
+#read accession IDs and
+#view accessions
+
+accessions <- read_lines("sra_accessions.txt")
+accessions
+
+#error handling
+if (length(accessions) == 0){
+  stop("No accessions found")
+}
+
+```
+
+
+## 2.4 Create an output directory
+
+```{r}
+#create an output directory for the FASTQ files
+dir.create("fastq_files", showWarnings = FALSE)
+
+```
+
+
+## 2.5 Check fasterq-dump availabiltity
+
+```{r}
+system("which fasterq-dump")
+
+#if not available, you've got to install sratools via the terminal first
+
+```
+
+
+## 2.6 Download SRA data
+
+```{r}
+
+for (acc in accession) {
+  message ("Downloadig:", acc)
+  
+  cmd <- paste(
+    "fasterq-dump",
+    acc,
+    "--split-files",
+    "--threads 4",
+    "-O fastq_files"
+  )
+  
+  system(cmd)
+}
+```
+
+
+## 2.7 Compress FASTQ files
+
+```{r}
+
+system("gzip fastq_files/*.fastq")
+
+```
+
+
+## 2.8 Verify downloaded files
+
+```{r}
+
+list.files("fastq_files")
+
+```
+
+
+
+## Summary
+
+This workflow successfully breaks down how to:
+
+i. read accession IDs from a file
+ii. automate SRA downloads in R
+iii. generate paired-end FASTQ files
+iv. organise outputs into directories
+
+This is a scalable and reproducible retrieval of sequencing data for downstream bioinformatics analysis.
+
+

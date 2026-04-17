@@ -2,3 +2,8 @@
 .Rhistory
 .RData
 .Ruserdata
+*.fastq
+*.fastq.gz
+logs/
+tmp/
+fastq_files/
