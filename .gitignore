@@ -7,3 +7,5 @@
 logs/
 tmp/
 fastq_files/
+.DS_Store
+retrieving_database_files_bioinformatics/
