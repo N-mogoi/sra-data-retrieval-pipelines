@@ -1,4 +1,6 @@
-.Rproj.user
-.Rhistory
-.RData
-.Ruserdata
+*.fastq
+*.fastq.gz
+*.sra
+temp/
+sra_downloads/
+logs/

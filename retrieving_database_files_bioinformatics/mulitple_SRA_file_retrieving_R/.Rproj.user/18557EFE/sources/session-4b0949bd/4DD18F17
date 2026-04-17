@@ -1,0 +1,27 @@
+{
+    "id": "4DD18F17",
+    "path": "~/msc_bidpg_2026/bioinformatics_module/biological_databases_ontology/retrieving_database_files_bioinformatics/mulitple_SRA_file_retrieving_R/retrieving_multiple_SRA_accessions.Rmd",
+    "project_path": "retrieving_multiple_SRA_accessions.Rmd",
+    "type": "r_markdown",
+    "hash": "0",
+    "contents": "",
+    "dirty": true,
+    "created": 1776358074920.0,
+    "source_on_save": false,
+    "relative_order": 3,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "71,0",
+        "scrollLine": "45",
+        "last_setup_crc32": ""
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1776362916,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1776423416622,
+    "read_only": false,
+    "read_only_alternatives": []
+}

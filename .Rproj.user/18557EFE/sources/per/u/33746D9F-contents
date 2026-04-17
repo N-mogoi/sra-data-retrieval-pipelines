@@ -1,0 +1,9 @@
+pwd
+getwd
+getwd()
+setwd("~/multiple_SRA_file_retrieving_R")
+setwd("/Users/nickm/msc_bidpg_2026/bioinformatics_module/biological_databases_ontology/multiple_SRA_file_retrieving_R")
+getwd()
+here::here()
+ls /Users/nickm/msc_bidpg_2026/bioinformatics_module/
+ls /Users/nickm/msc_bidpg_2026/bioinformatics_module/biological_databases_ontology/

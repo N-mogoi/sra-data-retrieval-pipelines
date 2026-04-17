@@ -1,0 +1,72 @@
+---
+title: "30656230_assignment_B2"
+author: "Nicholas_30656230"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+
+getwd()
+
+```
+
+
+## Reproducible retrieval of multiple SRA data files programmatically using R
+
+This is an automated batch processing R script essential for initial stages of bioinformatics pipelines.
+
+
+### Read accession files into R
+
+```{r}
+
+#setup, loading libraries, reading accession file, and viewing accessions
+
+library(tidyverse)
+accessions <- read_lines("sra_accessions.txt")
+accessions
+
+```
+
+
+```{r}
+#check expected length
+
+length(accessions)
+
+```
+
+
+
+### Retrieve SRA data 
+This step involves looping through the accessions, calling the SRA toolkit (fasterq-dump) from terminal to R, and downloading the FASTQ files.
+
+
+```{r}
+
+##Download SRA FASTQ files
+#loop through accessions, 
+#construct system command,
+#and run system command
+
+for (acc in accessions) {
+  message("Downloading: ", acc)
+  
+  cmd <- paste(
+    "fasterq-dump",
+    acc,
+    "--split-files",
+    "--threads 4"
+  )
+  
+  system(cmd)
+}
+
+```
+
+

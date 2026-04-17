@@ -1,0 +1,108 @@
+#!/bin/bash
+
+# ==============================
+# PBS JOB CONFIGURATION
+# ==============================
+#PBS -N nick_sra_download_job
+#PBS -l walltime=12:00:00
+#PBS -l ncpus=16
+#PBS -l mem=100GB
+#PBS -o logs/sra_download.out
+#PBS -e logs/sra_download.err
+#PBS -M mogoinn67@gmail.com
+#PBS -m abe
+
+# ==============================
+# SETUP ENVIRONMENT
+# ==============================
+
+cd ~/bioinformatics_module_2026/biological_databases_ontology
+
+echo "======================================"
+echo "Starting SRA download job"
+echo "Working directory: $(pwd)"
+echo "Date: $(date)"
+echo "======================================"
+
+# Load SRA Toolkit
+module purge
+module load app/sratools/3.0.1
+
+echo "Modules loaded:"
+module list
+
+echo "Checking fasterq-dump path:"
+which fasterq-dump
+
+# =============================
+# CHECK INPUT FILES
+# ============================
+echo "Current directory: $(pwd)"
+echo "Files in directory:"
+ls -lh
+
+echo "Checking accession file:"
+cat sra_accessions.txt
+
+# ==============================
+# CREATE DIRECTORIES
+# ==============================
+
+mkdir -p sra_downloads
+mkdir -p logs
+
+cd sra_downloads
+
+# ==============================
+# PERFORMANCE SETTINGS
+# ==============================
+
+THREADS=4 
+TMP_DIR=$PWD/tmp
+
+mkdir -p $TMP_DIR
+
+
+# ==============================
+# DOWNLOAD LOOP
+# ==============================
+
+while read ACC
+do
+    echo "--------------------------------------"
+    echo "Processing: $ACC"
+    echo "--------------------------------------"
+
+    # Download FASTQ files
+    fasterq-dump $ACC \
+        --split-files \
+        --threads $THREADS \
+        --temp $TMP_DIR \
+        --skip-technical \
+        --progress
+
+    # Compress output immediately (saves space)
+    gzip ${ACC}_1.fastq
+    gzip ${ACC}_2.fastq
+
+    # Verify files exist
+    if [[ -f "${ACC}_1.fastq.gz" && -f "${ACC}_2.fastq.gz" ]]; then
+        echo "✔ Successfully downloaded $ACC"
+    else
+        echo "✖ ERROR downloading $ACC" >> ../logs/failed_downloads.log
+    fi
+
+done < ../sra_accessions.txt
+
+# ==============================
+# FINAL SUMMARY
+# ==============================
+
+echo "======================================"
+echo "Download completed"
+echo "Date: $(date)"
+echo "======================================"
+
+# List results
+ls -lh *.fastq.gz
+
