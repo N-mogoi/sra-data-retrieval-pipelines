@@ -2,3 +2,22 @@
 .Rhistory
 .RData
 .Ruserdata
+# system files
+.DS_Store
+
+# python
+__pycache__/
+*.pyc
+
+# outputs
+fastq/
+logs/
+errors/
+temp/
+*.fastq
+*.fastq.gz
+
+# R leftovers
+.Rhistory
+.Rproj.user/
+*.Rproj
