@@ -8,7 +8,8 @@ This tool supports both SRR and ERR accessions and I have designed it for scalab
 
 ## Overview
 
-In this project, I have developed a robust SRA data retrieval pipeline, evolving from a basic script into a scalable, fault-tolerant system suitable for real-world bioinformatics applications.
+In this project, I have developed a scalable  SRA data retrieval pipeline, evolving from a basic script into a fault-tolerant system. 
+The juice here is that it can be applied in solving real bioinformatics problems.
 
 The pipeline integrates:
 
@@ -62,22 +63,20 @@ The pipeline integrates:
 
 ## Project structure
 batch-sra-downloader-python
-i. src/
+- src/
 	 sra_downloader.py # final production script
 	 sra_downloader_v1.py # baseline version
 	 sra_downloader_v2.py # intermediate version
-ii.  data/
+-  data/
 	 sra_accessions.txt # input file
 
-iii.  fastq/ # output (generated)
-iv.  logs/ # logs (generated)
-v. logerrors/ # error logs (generated)
-vi. temp/ # temporary files│
-vii. requirements.txt
-viii. .gitignore
-ix. README.md
-
-
+- fastq/ # output (generated)
+- logs/ # logs (generated)
+- logerrors/ # error logs (generated)
+- temp/ # temporary files│
+- requirements.txt
+- .gitignore
+- README.md
 
 ---
 
@@ -119,57 +118,57 @@ python3 src/sra_downloader.py < data/sra_accessions.txt
 ## Output
 FASTQ files
 fastq/
-├── SRRxxxx_1.fastq.gz
-├── SRRxxxx_2.fastq.gz
+─ SRRxxxx_1.fastq.gz
+─ SRRxxxx_2.fastq.gz
 
 
 ## Logs
 logs/
-├── download.log
-├── SRRxxxx_metadata.txt
+─ download.log
+─ SRRxxxx_metadata.txt
 
 
 ## Metadata retrieval
 
 Metadata is retrieved using the ENA API, including:
 
-i. run accession
-ii. organism (scientific name)
-iii. library layout (paired/single-end)
+- run accession
+- organism (scientific name)
+- library layout (paired/single-end)
 
 
 ## Performance considerations
-i. multiprocessing enables parallel downloads
-ii. thread allocation affects performance
-iii. excessive threading may overload system resources
-iv. network speed is a limiting factor
+- multiprocessing enables parallel downloads
+- thread allocation affects performance
+- excessive threading may overload system resources
+- network speed is a limiting factor
 
 
 ## Error handling
-i. invalid accessions are logged and skipped
-ii. failed downloads are retried automatically
-iii. persistent failures are written to errors.log
-iv. pipeline continues execution even if some downloads fail
+- invalid accessions are logged and skipped
+- failed downloads are retried automatically
+- persistent failures are written to errors.log
+- pipeline continues execution even if some downloads fail
 
 
 ## Design principles
 
 This pipeline was built with:
 
-i. reproducibility
-ii. scalability
-iii. fault tolerance
-iv. modularity
-v. real-world applicability
+- reproducibility
+- scalability
+- fault tolerance
+- modularity
+- real-world applicability
 
 in mind.
 
 ## Future improvements
-i. CLI argument support (argparse)
-ii. ERR → SRR mapping
-iii. structured metadata export (CSV/JSON)
-iv. Docker containerization
-v. workflow integration (Snakemake / Nextflow)
+- CLI argument support (argparse)
+- ERR → SRR mapping
+- structured metadata export (CSV/JSON)
+- Docker containerization
+- workflow integration (Snakemake / Nextflow)
 
 
 ## Author
@@ -182,7 +181,7 @@ Bioinformatics | HPC | Genomics | R | Python | Bash
 
 This pipeline is suitable for:
 
-i. pathogen genomics workflows
-11. RNA-seq data retrieval
-iii. comparative genomics
-iv. high-throughput sequencing projects
+- pathogen genomics workflows
+- RNA-seq data retrieval
+- comparative genomics
+- high-throughput sequencing projects
