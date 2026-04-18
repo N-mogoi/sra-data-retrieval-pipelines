@@ -51,7 +51,7 @@ The pipeline integrates:
 - error handling (try/except)
 - metadata retrieval (ENA API)
 
-### version 3 — production-level pipeline
+### version 3 — production pipeline
 - multiprocessing (parallel downloads)
 - retry mechanism for failed downloads
 - progress tracking (tqdm)
